@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/jsx-key */
 "use client"
 
 import React from 'react'
@@ -5,9 +7,11 @@ import axios from 'axios'
 import { FaRegHeart } from "react-icons/fa";
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image';
 import { IoMdArrowDropdown } from "react-icons/io";
 import { ShortByProduct } from "../Data/ShortByProduct";
 import { IoIosArrowForward } from "react-icons/io";
+import { HomeFeatureData } from '../Data/HomeFeatureData';
 /* import { ToastContainer, toast } from 'react-toastify'; */
 
 
@@ -57,6 +61,7 @@ export default function Product() {
   }
 
   {/* get product list */ }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   let getProducts = () => {
 
 
@@ -110,6 +115,8 @@ export default function Product() {
 
     getProducts()
   }, [sorting, categotyFilter])
+
+
   return (
     <>
       {/* title of Page */}
@@ -177,10 +184,11 @@ export default function Product() {
               <div className='my-2'>
                 <ul>
 
-                  {categoryData.map((value, index) => {
+                  {categoryData.map((value) => {
                     return (
                       <li className='py-2'>
                         <input type="checkbox" value={value.slug} onChange={getCategoryCheck} onClick={() => setmobileFilterButton(false)} /> {value.name}
+
                       </li>
                     )
                   })}
@@ -244,15 +252,15 @@ export default function Product() {
               {/* <ToastContainer /> */}
               <div className='relative lg:block sm:block hidden'>
                 <div className='  flex items-center justify-between gap-3 pr-20'>
-                <span className='text-gray-400 text-[12px]'> Sort By:</span>      
-                 <button className= 'text-[12px] border-1 border-gray-200 px-2 py-1 cursor-pointer flex items-center font-semibold' onClick={() => setsortBy(!sorrtBy)}>
-                  {dropDownMenu}
+                  <span className='text-gray-400 text-[12px]'> Sort By:</span>
+                  <button className='text-[12px] border-1 border-gray-200 px-2 py-1 cursor-pointer flex items-center font-semibold' onClick={() => setsortBy(!sorrtBy)}>
+                    {dropDownMenu}
 
-                  <IoMdArrowDropdown className='text-xl' />
+                    <IoMdArrowDropdown className='text-xl' />
 
-                </button>
+                  </button>
 
-                <span className='text-gray-400 text-[12px]'>Showing 1–1 of 1 results</span>
+                  <span className='text-gray-400 text-[12px]'>Showing 1–1 of 1 results</span>
                 </div>
                 <div className={`shadow-lg left-13 w-[50%] bg-white p-3 border-1 border-gray-200 rounded-sm absolute top-[100%] ${sorrtBy ? 'block' : 'hidden'}`}>
                   <ul>
@@ -274,7 +282,7 @@ export default function Product() {
                     }
                   </ul>
                 </div>
-               
+
               </div>
             </div>
             {/*show product data code */}
@@ -283,7 +291,7 @@ export default function Product() {
                 isLoading ?
                   <h1>Loading...</h1>
                   :
-                  productData.map((value, index) => <ProductItems pData={value} key={index} />)
+                  HomeFeatureData.map((value, index) => <ProductItems pData={value} key={index} />)
               }
             </div>
             {/*   {/*pagination code  
@@ -302,7 +310,7 @@ export default function Product() {
   )
 }
 function ProductItems({ pData }) {
-  let { id, title, price, thumbnail } = pData
+  let { id, name, subname, price, image, salePrice } = pData
 
   /*  let { cart, setcart } = useContext(counterContext) */
   /* 
@@ -340,13 +348,18 @@ function ProductItems({ pData }) {
     <div className='px-2 py-4'>
       <div className='bg-white shadow-2xl text-center'>
 
-        <img src={thumbnail}
+        <Image src={image}
           alt="Isaac Chest Of Drawer"
-          className='w-full h-40 object-cover '>
+          width={300}
+          height={240}
+          objectFit='cover'
 
-        </img>
-        <p className='text-[12px] text-gray-500 mt-2'>{title} </p>
-        <h3 className='font-bold mt-4 text-[14px] hover:text-[#c09578] '>{title}</h3>
+        >
+
+        </Image>
+
+        <p className='text-[12px] text-gray-500 mt-2'>{name} </p>
+        <h3 className='font-bold mt-4 text-[14px] hover:text-[#c09578] '>{subname}</h3>
         <div className='h-0.5 bg-gray-50 mt-3'></div>
 
         <div className='mt-2'>
@@ -354,7 +367,7 @@ function ProductItems({ pData }) {
             {price}
           </span>
           <span className='text-[#c09578] font-bold text-[14px]'>
-            {price-10}
+            {salePrice}
           </span>
 
 
@@ -381,7 +394,7 @@ function ProductItems({ pData }) {
       }
 
     </div>
-     
+
 
   )
 }

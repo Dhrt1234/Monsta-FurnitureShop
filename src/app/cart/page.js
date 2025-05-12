@@ -72,7 +72,7 @@ export default function Cart() {
               </td>
               <td className='max-w-[180px] max-h-[100px]  px-5 py-8 cursor-pointer border-1 '>
                 <img src='/images/1617829892944Evan Coffee Table__.jpg'
-                 
+                 alt="coffee table"
                 />
               </td>
               <td className='min-w-[180px] py-8 text-center border-1 text-black text-[12px]'>
@@ -95,7 +95,7 @@ export default function Cart() {
               </td>
               <td className='max-w-[180px] max-h-[100px]  px-5 py-8 cursor-pointer border-1 '>
                 <img src='/images/1663996596738Group 1.jpg'
-                 
+                 alt='even-coffee-table'
                 />
               </td>
               <td className='min-w-[180px] py-8 text-center border-1 text-black text-[12px]'>
@@ -118,7 +118,7 @@ export default function Cart() {
               </td>
               <td className='max-w-[180px] max-h-[100px]  px-5 py-8 cursor-pointer border-1 '>
                 <img src='/images/1617829052195Caroline Study Tables__.jpg'
-                 
+                 alt="study-table"
                 />
               </td>
               <td className='min-w-[180px] py-8 text-center border-1 text-black text-[12px]'>
